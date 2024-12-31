@@ -1,0 +1,14 @@
+.mousePanel{
+    justify-content: start;
+    align-items: start;
+    padding:30px;
+    box-sizing: border-box;
+    color:rgb(58, 58, 58);
+    h2{
+        color:black;
+    }
+    input[type="range"]{
+        width:400px;
+        padding:0;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FaceMouse</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/mouse.css">
+</head>
+<body>
+    <div class="app">
+        <div class="aside" style="position: relative;">
+            <h3> <img src="logo.jpg" alt=""> FaceMouse</h3>
+
+            <div class="container">
+                <a href="main.html"><div><i class="fa-solid fa-house"></i>  Start  </div></a>
+                <a class="active"  href="mouse.html"><div><i class="fa-solid fa-computer-mouse"></i> Mouse Settings  </div></a>
+                <a href="keyboard.html"><div><i class="fa-solid fa-keyboard"></i> Keyboard Functions  </div></a>
+                <!-- <div><i class="fa-solid fa-user"></i> Contact </div> -->
+            </div>
+            <container style="color:rgb(149, 149, 149);text-align:center;width: 100%;position: absolute;bottom: 50px;left:0;"> Adam Mohamedien &copy; </container>
+
+        </div>
+        <div class="content mousePanel" >
+            <container>
+                <h2> Mouse Settings </h2>
+                <br>
+                <br>
+                <container>
+                    <b>Mouse Sensitivity</b> <br>
+                    <br>
+
+                    <i style="color:rgb(177, 4, 4)">X</i> : <input min="100" value="0" max="400" class="xsen" oninput="eel.setXsen(this.value)" type="range"><br/>
+                    
+                    <i style="color:rgb(0, 149, 255)">Y</i> : <input min="60" value="0" max="200" class="ysen" oninput="eel.setYsen(this.value)" type="range">
+                    <br>
+                    <br>
+                    <b> Auto Clicking </b> <input onclick="(eel.setAclick())" class="aclick" type="checkbox" checked>
+                    <br>
+                    <b> Click After </b> <input style="padding:8px 10px;width:30px;text-align: center;" class="clicktime" type="number" oninput="eel.setClickAfter(this.value)" style="width:50px" value="" > seconds
+                </container>
+            </container>
+            
+        </div>
+    </div>
+    <script>
+        let $ = (n)=> document.querySelector(n) 
+        eel.getClick()((n)=>{
+            console.log(n)
+            if(n=="1") $(".aclick").checked = 1;
+            else  $(".aclick").checked = 0
+        })
+        eel.getXsen()((n)=>{
+             $(".xsen").value = n;
+        })
+
+        eel.getYsen()((n)=>{
+             $(".ysen").value = n;
+        })
+        eel.getClickTime()((n)=>{
+             $(".clicktime").value = n;
+        })
+    </script>
+</body>
+</html>

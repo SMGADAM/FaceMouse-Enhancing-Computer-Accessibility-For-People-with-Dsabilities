@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FaceMouse</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <div class="aside" style="position: relative;">
+            <h3> <img src="logo.jpg" alt="">FaceMouse</h3>
+
+            <div class="container">
+                <a href="main.html"><div><i class="fa-solid fa-house"></i>  Start  </div></a>
+                <a href="mouse.html"><div><i class="fa-solid fa-computer-mouse"></i> Mouse Settings  </div></a>
+                <a class="active" href="keyboard.html"><div><i class="fa-solid fa-keyboard"></i> Keyboard Functions  </div></a>
+                <!-- <div><i class="fa-solid fa-user"></i> Contact </div> -->
+            </div>
+            <container style="color:rgb(149, 149, 149);text-align:center;width: 100%;position: absolute;bottom: 50px;left:0;"> Adam Mohamedien &copy; </container>
+
+        </div>
+        <div class="content" style="flex-direction: column;">
+            <h2> Voice Commands </h2>
+            <br>
+            <br>
+            <container>
+                <table>
+                <tbody>
+                    <tr>
+                        <td><b>Speech</b> </td>
+                        <td><b>Keys</b> </td>
+                    </tr>
+                </tbody>
+
+
+                <tr>
+                    <td> <input type="" class="word" placeholder="Word"> </td>
+                    <td> <input type="" class="key" placeholder="Key"> </td>
+                    <td> <input type="button" onclick="addWord()" value="+"> </td>
+                </tr>
+                </table>
+
+            </container>
+        
+        </div>
+    </div>
+
+    <script>
+        let $ = (n)=> document.querySelector(n);
+        eel.refreshKeyboard()(data=>{
+            JSON.parse(data).forEach(e => {
+                $('tbody').innerHTML += `
+                        <tr class="com">
+                            <td>${e.word}</td>
+                            <td>${e.key}</td>
+                            <td><b onclick="minus(this.parentNode.parentNode)" >-</b></td>
+                        </tr> `
+            });
+        })
+        
+        let addWord = ()=>{
+            commands = [];
+            word = $(".word").value
+            key = $(".key").value
+
+            $('tbody').innerHTML += `
+                        <tr class="com">
+                            <td>${word}</td>
+                            <td>${key}</td>
+                            <td><b>-</b></td>
+                        </tr> `
+
+            $(".word").value = ""
+            $(".key").value = ""
+            document.querySelectorAll(".com").forEach((e)=>{
+                commands.push({word : (e.querySelectorAll("td")[0].innerHTML) , key : (e.querySelectorAll("td")[1].innerHTML) })
+            })
+
+            eel.SetKeyboard(JSON.stringify(commands))
+
+        }
+
+        let minus = (index)=>{
+            index.remove()
+            commands = [];
+            document.querySelectorAll(".com").forEach((e)=>{
+                commands.push({word : (e.querySelectorAll("td")[0].innerHTML) , key : (e.querySelectorAll("td")[1].innerHTML) })
+            })
+            eel.SetKeyboard(JSON.stringify(commands))
+        }
+
+    </script>
+</body>
+</html>

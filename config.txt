@@ -1,0 +1,1 @@
+{"clickAfter": 1, "aclick": "1", "xSen": 171, "ySen": 99, "keyboard": "[{\"word\":\"windows\",\"key\":\"win\"},{\"word\":\"close\",\"key\":\"alt,f4\"},{\"word\":\"start\",\"key\":\"win\"}]"}
